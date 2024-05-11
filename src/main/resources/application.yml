@@ -102,6 +102,6 @@ knife4j:
         api-rule-resources:
           - com.yijiawenCoder.hbsmoj.controller
 
-person:
-  name: yijiawen
-  password: 123456
+#代码沙箱配置
+codesandbox:
+  type: example
