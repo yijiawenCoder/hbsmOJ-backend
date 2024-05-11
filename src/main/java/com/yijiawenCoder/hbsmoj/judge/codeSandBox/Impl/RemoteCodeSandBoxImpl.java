@@ -1,4 +1,4 @@
-package com.yijiawenCoder.hbsmoj.judge.codeSandBox.impl;
+package com.yijiawenCoder.hbsmoj.judge.codeSandBox.Impl;
 
 import com.yijiawenCoder.hbsmoj.judge.codeSandBox.CodeSandBox;
 import com.yijiawenCoder.hbsmoj.judge.codeSandBox.model.ExecuteCodeRequest;
