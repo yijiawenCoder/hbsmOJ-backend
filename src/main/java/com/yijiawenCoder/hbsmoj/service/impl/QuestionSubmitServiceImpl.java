@@ -1,10 +1,12 @@
 package com.yijiawenCoder.hbsmoj.service.impl;
+
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yijiawenCoder.hbsmoj.common.ErrorCode;
 import com.yijiawenCoder.hbsmoj.constant.CommonConstant;
 import com.yijiawenCoder.hbsmoj.exception.BusinessException;
+import com.yijiawenCoder.hbsmoj.judge.JudgeService;
 import com.yijiawenCoder.hbsmoj.mapper.QuestionSubmitMapper;
 import com.yijiawenCoder.hbsmoj.model.dto.questionSubmit.DoQuestionSubmitRequest;
 import com.yijiawenCoder.hbsmoj.model.dto.questionSubmit.QuestionSubmitQueryRequest;
@@ -21,11 +23,13 @@ import com.yijiawenCoder.hbsmoj.utils.SqlUtils;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
+
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
-
 
 
 /**
@@ -42,6 +46,9 @@ public class QuestionSubmitServiceImpl extends
     private QuestionService questionService;
     @Resource
     private UserService userService;
+    @Resource
+    @Lazy
+    private JudgeService judgeService;
 
     /**
      * 题目提交
@@ -81,8 +88,11 @@ public class QuestionSubmitServiceImpl extends
             throw new BusinessException(ErrorCode.OPERATION_ERROR, "数据插入失败");
         }
         //todo 执行判题服务
-
-        return questionSubmit.getId();
+        Long id = questionSubmit.getId();
+        CompletableFuture.runAsync(() -> {
+            judgeService.doJudge(id);
+        });
+        return id;
     }
 
     @Override
