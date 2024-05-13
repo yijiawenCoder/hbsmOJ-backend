@@ -116,6 +116,7 @@ public class QuestionSubmitServiceImpl extends
         queryWrapper.eq("isDelete", false);
         queryWrapper.orderBy(SqlUtils.validSortField(sortField), sortOrder.equals(CommonConstant.SORT_ORDER_ASC),
                 sortField);
+
         return queryWrapper;
 
     }
