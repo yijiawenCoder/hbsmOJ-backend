@@ -19,8 +19,8 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 /**
  * 权限校验 AOP
- *
-# @author <a href="https://github.com/yijiawenCoder">yijiawenCoder</a>
+
+ @author <a href="https://github.com/yijiawenCoder">yijiawenCoder</a>
  */
 @Aspect
 @Component
