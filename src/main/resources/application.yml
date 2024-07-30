@@ -105,3 +105,8 @@ knife4j:
 #代码沙箱配置
 codesandbox:
   type: example
+dubbo:
+  application:
+    name:  hbsmoj-consumer
+
+  registry: 127.0.0.1:8080

@@ -20,8 +20,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 帖子收藏服务实现
- *
-# @author <a href="https://github.com/yijiawenCoder">yijiawenCoder</a>
+
+@author <a href="https://github.com/yijiawenCoder">yijiawenCoder</a>
  */
 @Service
 public class PostFavourServiceImpl extends ServiceImpl<PostFavourMapper, PostFavour>
@@ -44,6 +44,8 @@ public class PostFavourServiceImpl extends ServiceImpl<PostFavourMapper, PostFav
         if (post == null) {
             throw new BusinessException(ErrorCode.NOT_FOUND_ERROR);
         }
+
+
         // 是否已帖子收藏
         long userId = loginUser.getId();
         // 每个用户串行帖子收藏
